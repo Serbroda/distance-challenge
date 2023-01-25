@@ -1,6 +1,7 @@
 package db
 
 import (
+	"github.com/Serbroda/distance-challenge/user"
 	"log"
 	"sync"
 
@@ -20,11 +21,12 @@ func Connect(name string) *gorm.DB {
 			log.Fatalf("Failed to connect to database %s: %v", name, err)
 			panic(err)
 		}
+		Migrate(db)
 		DB = db
 	})
 	return DB
 }
 
 func Migrate(db *gorm.DB) {
-	//db.AutoMigrate(&models.User{}, &models.Group{}, &models.Link{}, &models.GroupSubscription{})
+	db.AutoMigrate(&user.User{})
 }

@@ -19,17 +19,23 @@ type Claims struct {
 }
 
 type LoginRequest struct {
-	Username string
-	Password string
+	Username string `json:"username" form:"username"`
+	Password string `json:"password" form:"password"`
+}
+
+type RegistrationRequest struct {
+	Username string `json:"username" form:"username"`
+	Password string `json:"password" form:"password"`
 }
 
 type TokenPair struct {
-	AccessToken  Jwt
-	RefreshToken Jwt
+	AccessToken  Jwt `json:"access_token"`
+	RefreshToken Jwt `json:"refresh_token"`
 }
 
 func RegisterHandlers(e *echo.Echo, h *Handler) {
 	e.POST("/login", h.Login)
+	e.POST("/register", h.Register)
 }
 
 func (h *Handler) Login(ctx echo.Context) error {
@@ -41,7 +47,7 @@ func (h *Handler) Login(ctx echo.Context) error {
 
 	user, err := h.Provider.GetByUsername(payload.Username)
 
-	if !CheckPasswordHash(user.Password, payload.Password) {
+	if err != nil || !CheckPasswordHash(payload.Password, user.Password) {
 		return ctx.String(http.StatusBadRequest, "invalid login")
 	}
 
@@ -55,6 +61,32 @@ func (h *Handler) Login(ctx echo.Context) error {
 		AccessToken:  t,
 		RefreshToken: rt,
 	})
+}
+
+func (h *Handler) Register(ctx echo.Context) error {
+	var payload RegistrationRequest
+	err := ctx.Bind(&payload)
+	if err != nil || payload.Username == "" || payload.Password == "" {
+		return ctx.String(http.StatusBadRequest, "bad request")
+	}
+
+	_, err = h.Provider.GetByUsername(payload.Username)
+
+	if err == nil {
+		return ctx.String(http.StatusBadRequest, "user already exists")
+	}
+
+	user, err := h.Provider.Create(user.User{
+		Username: payload.Username,
+		Password: MustHashPassword(payload.Password),
+		Active:   false,
+	})
+
+	if err != nil {
+		return ctx.String(http.StatusInternalServerError, "failed creating user")
+	}
+
+	return ctx.JSON(http.StatusCreated, user)
 }
 
 func generateTokenPair(user user.User, secret []byte, accessTokenMinues, refreshTokenMinutes int64) (string, string, error) {

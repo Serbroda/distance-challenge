@@ -30,9 +30,11 @@ func main() {
 		SigningKey: []byte("s3cret"),
 	}
 
-	e.Use(echojwt.WithConfig(config))
-	e.GET("/", func(c echo.Context) error {
+	api := e.Group("/api")
+	api.Use(echojwt.WithConfig(config))
+	api.GET("/hello", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
+
 	e.Logger.Fatal(e.Start(":1323"))
 }

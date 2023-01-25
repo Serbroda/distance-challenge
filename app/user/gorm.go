@@ -31,8 +31,13 @@ func (s *UserServiceGorm) GetByUsername(username string) (User, error) {
 	return entity, nil
 }
 
+func (s *UserServiceGorm) ExistsByUsername(username string) bool {
+	_, err := s.GetByUsername(username)
+	return err == nil
+}
+
 func (s *UserServiceGorm) Create(user User) (User, error) {
-	if _, err := s.GetByUsername(user.Username); err != nil {
+	if s.ExistsByUsername(user.Username) {
 		return User{}, ErrUserAlreadyExists
 	}
 	res := s.DB.Create(&user)
