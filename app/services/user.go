@@ -23,6 +23,12 @@ func (s *UserService) Get(id uint) (models.User, error) {
 	return entity, nil
 }
 
+func (s *UserService) GetAll() []models.User {
+	var entites []models.User
+	s.DB.Find(&entites)
+	return entites
+}
+
 func (s *UserService) GetByUsername(username string) (models.User, error) {
 	var entity models.User
 	res := s.DB.Where("lower(username) = lower(?)", username).First(&entity)
