@@ -14,21 +14,19 @@ import (
 	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
-// @title Echo Swagger Example API
+// @title Distance Challenge API
 // @version 1.0
-// @description This is a sample server server.
-// @termsOfService http://swagger.io/terms/
-
-// @contact.name API Support
-// @contact.url http://www.swagger.io/support
-// @contact.email support@swagger.io
-
-// @license.name Apache 2.0
-// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @description Distance Challenge API.
 
 // @host localhost
 // @BasePath /
 // @schemes http
+
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
+// @scheme bearer
+// @bearerFormat: JWT
 func main() {
 	db := db.Connect(":memory:")
 	us := services.UserService{DB: db}

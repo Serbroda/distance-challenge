@@ -67,29 +67,24 @@ definitions:
     type: object
 host: localhost
 info:
-  contact:
-    email: support@swagger.io
-    name: API Support
-    url: http://www.swagger.io/support
-  description: This is a sample server server.
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  termsOfService: http://swagger.io/terms/
-  title: Echo Swagger Example API
+  contact: {}
+  description: Distance Challenge API.
+  title: Distance Challenge API
   version: "1.0"
 paths:
   /auth/login:
     post:
       consumes:
       - application/json
+      description: login to an account
+      operationId: login
       parameters:
       - description: login body
         in: body
         name: login
         required: true
         schema:
-          $ref: '#/definitions/app_handlers.LoginRequest'
+          $ref: '#/definitions/github_com_Serbroda_distance-challenge_handlers.LoginRequest'
       produces:
       - application/json
       responses:
@@ -101,19 +96,22 @@ paths:
           description: Bad Request
         "500":
           description: Internal Server Error
+      summary: Login
       tags:
       - auth
   /auth/register:
     post:
       consumes:
       - application/json
+      description: register a new account
+      operationId: register
       parameters:
       - description: register body
         in: body
         name: login
         required: true
         schema:
-          $ref: '#/definitions/app_handlers.RegistrationRequest'
+          $ref: '#/definitions/github_com_Serbroda_distance-challenge_handlers.RegistrationRequest'
       produces:
       - application/json
       responses:
@@ -125,12 +123,15 @@ paths:
           description: Bad Request
         "500":
           description: Internal Server Error
+      summary: Register
       tags:
       - auth
   /me:
     get:
       consumes:
       - application/json
+      description: get me information
+      operationId: getMe
       produces:
       - application/json
       responses:
@@ -148,12 +149,17 @@ paths:
           description: Not Found
         "500":
           description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Show self
       tags:
       - api
   /runs:
     get:
       consumes:
       - application/json
+      description: list all runs
+      operationId: getRuns
       produces:
       - application/json
       responses:
@@ -169,12 +175,17 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: List runs
       tags:
       - api
   /runs/{id}:
     delete:
       consumes:
       - application/json
+      description: delete a specific run
+      operationId: deleteRun
       parameters:
       - description: run id
         in: path
@@ -195,11 +206,16 @@ paths:
           description: Not Found
         "500":
           description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Delete a run
       tags:
       - api
     get:
       consumes:
       - application/json
+      description: get a specific run
+      operationId: getRun
       parameters:
       - description: run id
         in: path
@@ -220,11 +236,16 @@ paths:
           description: Not Found
         "500":
           description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get a run
       tags:
       - api
     put:
       consumes:
       - application/json
+      description: update a specific run
+      operationId: updateRun
       parameters:
       - description: run id
         in: path
@@ -253,12 +274,17 @@ paths:
           description: Not Found
         "500":
           description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update a run
       tags:
       - api
   /users:
     get:
       consumes:
       - application/json
+      description: get list of all users
+      operationId: getUsers
       produces:
       - application/json
       responses:
@@ -276,12 +302,17 @@ paths:
           description: Not Found
         "500":
           description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: List users
       tags:
       - api
   /users/{id}/runs:
     post:
       consumes:
       - application/json
+      description: create a new run
+      operationId: createRun
       parameters:
       - description: user id
         in: path
@@ -308,12 +339,17 @@ paths:
           description: Forbidden
         "500":
           description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Create a run
       tags:
       - api
   /users/{userId}:
     get:
       consumes:
       - application/json
+      description: get information of a specific user
+      operationId: getUser
       parameters:
       - description: user id
         in: path
@@ -334,11 +370,16 @@ paths:
           description: Not Found
         "500":
           description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get user
       tags:
       - api
     put:
       consumes:
       - application/json
+      description: update a user
+      operationId: updateUser
       parameters:
       - description: user id
         in: path
@@ -367,12 +408,17 @@ paths:
           description: Not Found
         "500":
           description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update a user
       tags:
       - api
   /users/{userId}/activate:
     put:
       consumes:
       - application/json
+      description: activate a specific user
+      operationId: activateUser
       parameters:
       - description: user id
         in: path
@@ -399,8 +445,16 @@ paths:
           description: Not Found
         "500":
           description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Activates a user
       tags:
       - api
 schemes:
 - http
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"

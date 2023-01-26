@@ -37,9 +37,13 @@ func RegisterUserHandlers(e *echo.Group, h *UserHandler, baseUrl string) {
 	e.DELETE(baseUrl+"/users/:runId", h.DeleteRun)
 }
 
+// @Id getMe
+// @Summary Show self
+// @Description get me information
 // @Tags api
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Success 200 {object} models.User
 // @Failure 400
 // @Failure 401
@@ -55,9 +59,13 @@ func (h *UserHandler) Me(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, u)
 }
 
+// @Id getUsers
+// @Summary List users
+// @Description get list of all users
 // @Tags api
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Success 200 {array} models.User
 // @Failure 401
 // @Failure 403
@@ -68,9 +76,13 @@ func (h *UserHandler) GetUsers(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, h.UserService.GetAll())
 }
 
+// @Id getUser
+// @Summary Get user
+// @Description get information of a specific user
 // @Tags api
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param userId path string false "user id"
 // @Success 200 {object} models.User
 // @Failure 401
@@ -92,9 +104,13 @@ func (h *UserHandler) GetUser(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, user)
 }
 
+// @Id updateUser
+// @Summary Update a user
+// @Description update a user
 // @Tags api
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param userId path string false "user id"
 // @Param user body models.User true "user body"
 // @Success 200 {object} models.User
@@ -137,9 +153,13 @@ func (h *UserHandler) UpdateUser(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, user)
 }
 
+// @Id activateUser
+// @Summary Activates a user
+// @Description activate a specific user
 // @Tags api
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param userId path string false "user id"
 // @Param user body models.User true "user body"
 // @Success 200 {object} models.User
@@ -160,9 +180,13 @@ func (h *UserHandler) Activate(ctx echo.Context) error {
 	return ctx.String(http.StatusOK, "user "+userId+" activated")
 }
 
+// @Id getRuns
+// @Summary List runs
+// @Description list all runs
 // @Tags api
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Success 200 {array} models.Run
 // @Failure 401
 // @Failure 403
@@ -185,9 +209,13 @@ func (h *UserHandler) GetRuns(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, runs)
 }
 
+// @Id createRun
+// @Summary Create a run
+// @Description create a new run
 // @Tags api
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param id path string false "user id"
 // @Param user body models.Run true "run body"
 // @Success 200 {array} models.Run
@@ -215,9 +243,13 @@ func (h *UserHandler) CreateRun(ctx echo.Context) error {
 	return ctx.JSON(http.StatusCreated, run)
 }
 
+// @Id getRun
+// @Summary Get a run
+// @Description get a specific run
 // @Tags api
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param id path string false "run id"
 // @Success 200 {object} models.Run
 // @Failure 401
@@ -238,9 +270,13 @@ func (h *UserHandler) GetRun(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, run)
 }
 
+// @Id updateRun
+// @Summary Update a run
+// @Description update a specific run
 // @Tags api
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param id path string false "run id"
 // @Param user body models.Run true "run body"
 // @Success 200 {object} models.Run
@@ -283,9 +319,13 @@ func (h *UserHandler) UpdateRun(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, run)
 }
 
+// @Id deleteRun
+// @Summary Delete a run
+// @Description delete a specific run
 // @Tags api
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param id path string false "run id"
 // @Success 200
 // @Failure 400

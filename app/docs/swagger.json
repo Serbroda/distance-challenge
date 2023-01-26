@@ -4,18 +4,9 @@
     ],
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server server.",
-        "title": "Echo Swagger Example API",
-        "termsOfService": "http://swagger.io/terms/",
-        "contact": {
-            "name": "API Support",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-        },
+        "description": "Distance Challenge API.",
+        "title": "Distance Challenge API",
+        "contact": {},
         "version": "1.0"
     },
     "host": "localhost",
@@ -23,6 +14,7 @@
     "paths": {
         "/auth/login": {
             "post": {
+                "description": "login to an account",
                 "consumes": [
                     "application/json"
                 ],
@@ -32,6 +24,8 @@
                 "tags": [
                     "auth"
                 ],
+                "summary": "Login",
+                "operationId": "login",
                 "parameters": [
                     {
                         "description": "login body",
@@ -39,7 +33,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/app_handlers.LoginRequest"
+                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_handlers.LoginRequest"
                         }
                     }
                 ],
@@ -61,6 +55,7 @@
         },
         "/auth/register": {
             "post": {
+                "description": "register a new account",
                 "consumes": [
                     "application/json"
                 ],
@@ -70,6 +65,8 @@
                 "tags": [
                     "auth"
                 ],
+                "summary": "Register",
+                "operationId": "register",
                 "parameters": [
                     {
                         "description": "register body",
@@ -77,7 +74,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/app_handlers.RegistrationRequest"
+                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_handlers.RegistrationRequest"
                         }
                     }
                 ],
@@ -99,6 +96,12 @@
         },
         "/me": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "get me information",
                 "consumes": [
                     "application/json"
                 ],
@@ -108,6 +111,8 @@
                 "tags": [
                     "api"
                 ],
+                "summary": "Show self",
+                "operationId": "getMe",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -135,6 +140,12 @@
         },
         "/runs": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "list all runs",
                 "consumes": [
                     "application/json"
                 ],
@@ -144,6 +155,8 @@
                 "tags": [
                     "api"
                 ],
+                "summary": "List runs",
+                "operationId": "getRuns",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -168,6 +181,12 @@
         },
         "/runs/{id}": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "get a specific run",
                 "consumes": [
                     "application/json"
                 ],
@@ -177,6 +196,8 @@
                 "tags": [
                     "api"
                 ],
+                "summary": "Get a run",
+                "operationId": "getRun",
                 "parameters": [
                     {
                         "type": "string",
@@ -207,6 +228,12 @@
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "update a specific run",
                 "consumes": [
                     "application/json"
                 ],
@@ -216,6 +243,8 @@
                 "tags": [
                     "api"
                 ],
+                "summary": "Update a run",
+                "operationId": "updateRun",
                 "parameters": [
                     {
                         "type": "string",
@@ -258,6 +287,12 @@
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "delete a specific run",
                 "consumes": [
                     "application/json"
                 ],
@@ -267,6 +302,8 @@
                 "tags": [
                     "api"
                 ],
+                "summary": "Delete a run",
+                "operationId": "deleteRun",
                 "parameters": [
                     {
                         "type": "string",
@@ -299,6 +336,12 @@
         },
         "/users": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "get list of all users",
                 "consumes": [
                     "application/json"
                 ],
@@ -308,6 +351,8 @@
                 "tags": [
                     "api"
                 ],
+                "summary": "List users",
+                "operationId": "getUsers",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -335,6 +380,12 @@
         },
         "/users/{id}/runs": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "create a new run",
                 "consumes": [
                     "application/json"
                 ],
@@ -344,6 +395,8 @@
                 "tags": [
                     "api"
                 ],
+                "summary": "Create a run",
+                "operationId": "createRun",
                 "parameters": [
                     {
                         "type": "string",
@@ -385,6 +438,12 @@
         },
         "/users/{userId}": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "get information of a specific user",
                 "consumes": [
                     "application/json"
                 ],
@@ -394,6 +453,8 @@
                 "tags": [
                     "api"
                 ],
+                "summary": "Get user",
+                "operationId": "getUser",
                 "parameters": [
                     {
                         "type": "string",
@@ -424,6 +485,12 @@
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "update a user",
                 "consumes": [
                     "application/json"
                 ],
@@ -433,6 +500,8 @@
                 "tags": [
                     "api"
                 ],
+                "summary": "Update a user",
+                "operationId": "updateUser",
                 "parameters": [
                     {
                         "type": "string",
@@ -477,6 +546,12 @@
         },
         "/users/{userId}/activate": {
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "activate a specific user",
                 "consumes": [
                     "application/json"
                 ],
@@ -486,6 +561,8 @@
                 "tags": [
                     "api"
                 ],
+                "summary": "Activates a user",
+                "operationId": "activateUser",
                 "parameters": [
                     {
                         "type": "string",
@@ -627,6 +704,13 @@
                     "type": "string"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }

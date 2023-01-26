@@ -27,6 +27,9 @@ func RegisterAuthHandlers(e *echo.Echo, h *AuthHandler, baseUrl string) {
 	e.POST(baseUrl+"/auth/register", h.Register)
 }
 
+// @Id login
+// @Summary Login
+// @Description login to an account
 // @Tags auth
 // @Accept json
 // @Produce json
@@ -57,6 +60,9 @@ func (h *AuthHandler) Login(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, tokens)
 }
 
+// @Id register
+// @Summary Register
+// @Description register a new account
 // @Tags auth
 // @Accept json
 // @Produce json

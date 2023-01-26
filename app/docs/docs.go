@@ -10,16 +10,7 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://swagger.io/terms/",
-        "contact": {
-            "name": "API Support",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-        },
+        "contact": {},
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
@@ -27,6 +18,7 @@ const docTemplate = `{
     "paths": {
         "/auth/login": {
             "post": {
+                "description": "login to an account",
                 "consumes": [
                     "application/json"
                 ],
@@ -36,6 +28,8 @@ const docTemplate = `{
                 "tags": [
                     "auth"
                 ],
+                "summary": "Login",
+                "operationId": "login",
                 "parameters": [
                     {
                         "description": "login body",
@@ -43,7 +37,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/app_handlers.LoginRequest"
+                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_handlers.LoginRequest"
                         }
                     }
                 ],
@@ -65,6 +59,7 @@ const docTemplate = `{
         },
         "/auth/register": {
             "post": {
+                "description": "register a new account",
                 "consumes": [
                     "application/json"
                 ],
@@ -74,6 +69,8 @@ const docTemplate = `{
                 "tags": [
                     "auth"
                 ],
+                "summary": "Register",
+                "operationId": "register",
                 "parameters": [
                     {
                         "description": "register body",
@@ -81,7 +78,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/app_handlers.RegistrationRequest"
+                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_handlers.RegistrationRequest"
                         }
                     }
                 ],
@@ -103,6 +100,12 @@ const docTemplate = `{
         },
         "/me": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "get me information",
                 "consumes": [
                     "application/json"
                 ],
@@ -112,6 +115,8 @@ const docTemplate = `{
                 "tags": [
                     "api"
                 ],
+                "summary": "Show self",
+                "operationId": "getMe",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -139,6 +144,12 @@ const docTemplate = `{
         },
         "/runs": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "list all runs",
                 "consumes": [
                     "application/json"
                 ],
@@ -148,6 +159,8 @@ const docTemplate = `{
                 "tags": [
                     "api"
                 ],
+                "summary": "List runs",
+                "operationId": "getRuns",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -172,6 +185,12 @@ const docTemplate = `{
         },
         "/runs/{id}": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "get a specific run",
                 "consumes": [
                     "application/json"
                 ],
@@ -181,6 +200,8 @@ const docTemplate = `{
                 "tags": [
                     "api"
                 ],
+                "summary": "Get a run",
+                "operationId": "getRun",
                 "parameters": [
                     {
                         "type": "string",
@@ -211,6 +232,12 @@ const docTemplate = `{
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "update a specific run",
                 "consumes": [
                     "application/json"
                 ],
@@ -220,6 +247,8 @@ const docTemplate = `{
                 "tags": [
                     "api"
                 ],
+                "summary": "Update a run",
+                "operationId": "updateRun",
                 "parameters": [
                     {
                         "type": "string",
@@ -262,6 +291,12 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "delete a specific run",
                 "consumes": [
                     "application/json"
                 ],
@@ -271,6 +306,8 @@ const docTemplate = `{
                 "tags": [
                     "api"
                 ],
+                "summary": "Delete a run",
+                "operationId": "deleteRun",
                 "parameters": [
                     {
                         "type": "string",
@@ -303,6 +340,12 @@ const docTemplate = `{
         },
         "/users": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "get list of all users",
                 "consumes": [
                     "application/json"
                 ],
@@ -312,6 +355,8 @@ const docTemplate = `{
                 "tags": [
                     "api"
                 ],
+                "summary": "List users",
+                "operationId": "getUsers",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -339,6 +384,12 @@ const docTemplate = `{
         },
         "/users/{id}/runs": {
             "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "create a new run",
                 "consumes": [
                     "application/json"
                 ],
@@ -348,6 +399,8 @@ const docTemplate = `{
                 "tags": [
                     "api"
                 ],
+                "summary": "Create a run",
+                "operationId": "createRun",
                 "parameters": [
                     {
                         "type": "string",
@@ -389,6 +442,12 @@ const docTemplate = `{
         },
         "/users/{userId}": {
             "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "get information of a specific user",
                 "consumes": [
                     "application/json"
                 ],
@@ -398,6 +457,8 @@ const docTemplate = `{
                 "tags": [
                     "api"
                 ],
+                "summary": "Get user",
+                "operationId": "getUser",
                 "parameters": [
                     {
                         "type": "string",
@@ -428,6 +489,12 @@ const docTemplate = `{
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "update a user",
                 "consumes": [
                     "application/json"
                 ],
@@ -437,6 +504,8 @@ const docTemplate = `{
                 "tags": [
                     "api"
                 ],
+                "summary": "Update a user",
+                "operationId": "updateUser",
                 "parameters": [
                     {
                         "type": "string",
@@ -481,6 +550,12 @@ const docTemplate = `{
         },
         "/users/{userId}/activate": {
             "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "activate a specific user",
                 "consumes": [
                     "application/json"
                 ],
@@ -490,6 +565,8 @@ const docTemplate = `{
                 "tags": [
                     "api"
                 ],
+                "summary": "Activates a user",
+                "operationId": "activateUser",
                 "parameters": [
                     {
                         "type": "string",
@@ -632,6 +709,13 @@ const docTemplate = `{
                 }
             }
         }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
     }
 }`
 
@@ -641,8 +725,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost",
 	BasePath:         "/",
 	Schemes:          []string{"http"},
-	Title:            "Echo Swagger Example API",
-	Description:      "This is a sample server server.",
+	Title:            "Distance Challenge API",
+	Description:      "Distance Challenge API.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }
