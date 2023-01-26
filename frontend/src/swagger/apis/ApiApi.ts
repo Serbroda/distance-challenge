@@ -15,22 +15,22 @@
 
 import * as runtime from '../runtime';
 import {
-    GithubComSerbrodaDistanceChallengeModelsRun,
-    GithubComSerbrodaDistanceChallengeModelsRunFromJSON,
-    GithubComSerbrodaDistanceChallengeModelsRunToJSON,
-    GithubComSerbrodaDistanceChallengeModelsUser,
-    GithubComSerbrodaDistanceChallengeModelsUserFromJSON,
-    GithubComSerbrodaDistanceChallengeModelsUserToJSON,
+    ModelsRun,
+    ModelsRunFromJSON,
+    ModelsRunToJSON,
+    ModelsUser,
+    ModelsUserFromJSON,
+    ModelsUserToJSON,
 } from '../models';
 
 export interface ActivateUserRequest {
     userId: string;
-    user: GithubComSerbrodaDistanceChallengeModelsUser;
+    user: ModelsUser;
 }
 
 export interface CreateRunRequest {
     id: string;
-    user: GithubComSerbrodaDistanceChallengeModelsRun;
+    user: ModelsRun;
 }
 
 export interface DeleteRunRequest {
@@ -47,12 +47,12 @@ export interface GetUserRequest {
 
 export interface UpdateRunRequest {
     id: string;
-    user: GithubComSerbrodaDistanceChallengeModelsRun;
+    user: ModelsRun;
 }
 
 export interface UpdateUserRequest {
     userId: string;
-    user: GithubComSerbrodaDistanceChallengeModelsUser;
+    user: ModelsUser;
 }
 
 /**
@@ -64,7 +64,7 @@ export class ApiApi extends runtime.BaseAPI {
      * activate a specific user
      * Activates a user
      */
-    async activateUserRaw(requestParameters: ActivateUserRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<GithubComSerbrodaDistanceChallengeModelsUser>> {
+    async activateUserRaw(requestParameters: ActivateUserRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<ModelsUser>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling activateUser.');
         }
@@ -88,17 +88,17 @@ export class ApiApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: GithubComSerbrodaDistanceChallengeModelsUserToJSON(requestParameters.user),
+            body: ModelsUserToJSON(requestParameters.user),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GithubComSerbrodaDistanceChallengeModelsUserFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelsUserFromJSON(jsonValue));
     }
 
     /**
      * activate a specific user
      * Activates a user
      */
-    async activateUser(requestParameters: ActivateUserRequest, initOverrides?: RequestInit): Promise<GithubComSerbrodaDistanceChallengeModelsUser> {
+    async activateUser(requestParameters: ActivateUserRequest, initOverrides?: RequestInit): Promise<ModelsUser> {
         const response = await this.activateUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -107,7 +107,7 @@ export class ApiApi extends runtime.BaseAPI {
      * create a new run
      * Create a run
      */
-    async createRunRaw(requestParameters: CreateRunRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<Array<GithubComSerbrodaDistanceChallengeModelsRun>>> {
+    async createRunRaw(requestParameters: CreateRunRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<Array<ModelsRun>>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling createRun.');
         }
@@ -131,17 +131,17 @@ export class ApiApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: GithubComSerbrodaDistanceChallengeModelsRunToJSON(requestParameters.user),
+            body: ModelsRunToJSON(requestParameters.user),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GithubComSerbrodaDistanceChallengeModelsRunFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelsRunFromJSON));
     }
 
     /**
      * create a new run
      * Create a run
      */
-    async createRun(requestParameters: CreateRunRequest, initOverrides?: RequestInit): Promise<Array<GithubComSerbrodaDistanceChallengeModelsRun>> {
+    async createRun(requestParameters: CreateRunRequest, initOverrides?: RequestInit): Promise<Array<ModelsRun>> {
         const response = await this.createRunRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -185,7 +185,7 @@ export class ApiApi extends runtime.BaseAPI {
      * get me information
      * Show self
      */
-    async getMeRaw(initOverrides?: RequestInit): Promise<runtime.ApiResponse<GithubComSerbrodaDistanceChallengeModelsUser>> {
+    async getMeRaw(initOverrides?: RequestInit): Promise<runtime.ApiResponse<ModelsUser>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -201,14 +201,14 @@ export class ApiApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GithubComSerbrodaDistanceChallengeModelsUserFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelsUserFromJSON(jsonValue));
     }
 
     /**
      * get me information
      * Show self
      */
-    async getMe(initOverrides?: RequestInit): Promise<GithubComSerbrodaDistanceChallengeModelsUser> {
+    async getMe(initOverrides?: RequestInit): Promise<ModelsUser> {
         const response = await this.getMeRaw(initOverrides);
         return await response.value();
     }
@@ -217,7 +217,7 @@ export class ApiApi extends runtime.BaseAPI {
      * get a specific run
      * Get a run
      */
-    async getRunRaw(requestParameters: GetRunRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<GithubComSerbrodaDistanceChallengeModelsRun>> {
+    async getRunRaw(requestParameters: GetRunRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<ModelsRun>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getRun.');
         }
@@ -237,14 +237,14 @@ export class ApiApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GithubComSerbrodaDistanceChallengeModelsRunFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelsRunFromJSON(jsonValue));
     }
 
     /**
      * get a specific run
      * Get a run
      */
-    async getRun(requestParameters: GetRunRequest, initOverrides?: RequestInit): Promise<GithubComSerbrodaDistanceChallengeModelsRun> {
+    async getRun(requestParameters: GetRunRequest, initOverrides?: RequestInit): Promise<ModelsRun> {
         const response = await this.getRunRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -253,7 +253,7 @@ export class ApiApi extends runtime.BaseAPI {
      * list all runs
      * List runs
      */
-    async getRunsRaw(initOverrides?: RequestInit): Promise<runtime.ApiResponse<Array<GithubComSerbrodaDistanceChallengeModelsRun>>> {
+    async getRunsRaw(initOverrides?: RequestInit): Promise<runtime.ApiResponse<Array<ModelsRun>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -269,14 +269,14 @@ export class ApiApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GithubComSerbrodaDistanceChallengeModelsRunFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelsRunFromJSON));
     }
 
     /**
      * list all runs
      * List runs
      */
-    async getRuns(initOverrides?: RequestInit): Promise<Array<GithubComSerbrodaDistanceChallengeModelsRun>> {
+    async getRuns(initOverrides?: RequestInit): Promise<Array<ModelsRun>> {
         const response = await this.getRunsRaw(initOverrides);
         return await response.value();
     }
@@ -285,7 +285,7 @@ export class ApiApi extends runtime.BaseAPI {
      * get information of a specific user
      * Get user
      */
-    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<GithubComSerbrodaDistanceChallengeModelsUser>> {
+    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<ModelsUser>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUser.');
         }
@@ -305,14 +305,14 @@ export class ApiApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GithubComSerbrodaDistanceChallengeModelsUserFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelsUserFromJSON(jsonValue));
     }
 
     /**
      * get information of a specific user
      * Get user
      */
-    async getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit): Promise<GithubComSerbrodaDistanceChallengeModelsUser> {
+    async getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit): Promise<ModelsUser> {
         const response = await this.getUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -321,7 +321,7 @@ export class ApiApi extends runtime.BaseAPI {
      * get list of all users
      * List users
      */
-    async getUsersRaw(initOverrides?: RequestInit): Promise<runtime.ApiResponse<Array<GithubComSerbrodaDistanceChallengeModelsUser>>> {
+    async getUsersRaw(initOverrides?: RequestInit): Promise<runtime.ApiResponse<Array<ModelsUser>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -337,14 +337,14 @@ export class ApiApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GithubComSerbrodaDistanceChallengeModelsUserFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelsUserFromJSON));
     }
 
     /**
      * get list of all users
      * List users
      */
-    async getUsers(initOverrides?: RequestInit): Promise<Array<GithubComSerbrodaDistanceChallengeModelsUser>> {
+    async getUsers(initOverrides?: RequestInit): Promise<Array<ModelsUser>> {
         const response = await this.getUsersRaw(initOverrides);
         return await response.value();
     }
@@ -353,7 +353,7 @@ export class ApiApi extends runtime.BaseAPI {
      * update a specific run
      * Update a run
      */
-    async updateRunRaw(requestParameters: UpdateRunRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<GithubComSerbrodaDistanceChallengeModelsRun>> {
+    async updateRunRaw(requestParameters: UpdateRunRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<ModelsRun>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling updateRun.');
         }
@@ -377,17 +377,17 @@ export class ApiApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: GithubComSerbrodaDistanceChallengeModelsRunToJSON(requestParameters.user),
+            body: ModelsRunToJSON(requestParameters.user),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GithubComSerbrodaDistanceChallengeModelsRunFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelsRunFromJSON(jsonValue));
     }
 
     /**
      * update a specific run
      * Update a run
      */
-    async updateRun(requestParameters: UpdateRunRequest, initOverrides?: RequestInit): Promise<GithubComSerbrodaDistanceChallengeModelsRun> {
+    async updateRun(requestParameters: UpdateRunRequest, initOverrides?: RequestInit): Promise<ModelsRun> {
         const response = await this.updateRunRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -396,7 +396,7 @@ export class ApiApi extends runtime.BaseAPI {
      * update a user
      * Update a user
      */
-    async updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<GithubComSerbrodaDistanceChallengeModelsUser>> {
+    async updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<ModelsUser>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling updateUser.');
         }
@@ -420,17 +420,17 @@ export class ApiApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: GithubComSerbrodaDistanceChallengeModelsUserToJSON(requestParameters.user),
+            body: ModelsUserToJSON(requestParameters.user),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GithubComSerbrodaDistanceChallengeModelsUserFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelsUserFromJSON(jsonValue));
     }
 
     /**
      * update a user
      * Update a user
      */
-    async updateUser(requestParameters: UpdateUserRequest, initOverrides?: RequestInit): Promise<GithubComSerbrodaDistanceChallengeModelsUser> {
+    async updateUser(requestParameters: UpdateUserRequest, initOverrides?: RequestInit): Promise<ModelsUser> {
         const response = await this.updateUserRaw(requestParameters, initOverrides);
         return await response.value();
     }

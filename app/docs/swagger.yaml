@@ -1,34 +1,20 @@
 basePath: /
 definitions:
-  app_handlers.LoginRequest:
+  handlers.LoginRequest:
     properties:
       password:
         type: string
       username:
         type: string
     type: object
-  app_handlers.RegistrationRequest:
+  handlers.RegistrationRequest:
     properties:
       password:
         type: string
       username:
         type: string
     type: object
-  github_com_Serbroda_distance-challenge_handlers.LoginRequest:
-    properties:
-      password:
-        type: string
-      username:
-        type: string
-    type: object
-  github_com_Serbroda_distance-challenge_handlers.RegistrationRequest:
-    properties:
-      password:
-        type: string
-      username:
-        type: string
-    type: object
-  github_com_Serbroda_distance-challenge_models.Run:
+  models.Run:
     properties:
       created_at:
         type: string
@@ -43,7 +29,7 @@ definitions:
       user_id:
         type: integer
     type: object
-  github_com_Serbroda_distance-challenge_models.User:
+  models.User:
     properties:
       active:
         type: boolean
@@ -58,7 +44,7 @@ definitions:
       username:
         type: string
     type: object
-  github_com_Serbroda_distance-challenge_security.TokenPair:
+  security.TokenPair:
     properties:
       access_token:
         type: string
@@ -84,14 +70,14 @@ paths:
         name: login
         required: true
         schema:
-          $ref: '#/definitions/github_com_Serbroda_distance-challenge_handlers.LoginRequest'
+          $ref: '#/definitions/handlers.LoginRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_Serbroda_distance-challenge_security.TokenPair'
+            $ref: '#/definitions/security.TokenPair'
         "400":
           description: Bad Request
         "500":
@@ -111,14 +97,14 @@ paths:
         name: login
         required: true
         schema:
-          $ref: '#/definitions/github_com_Serbroda_distance-challenge_handlers.RegistrationRequest'
+          $ref: '#/definitions/handlers.RegistrationRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+            $ref: '#/definitions/models.User'
         "400":
           description: Bad Request
         "500":
@@ -138,7 +124,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+            $ref: '#/definitions/models.User'
         "400":
           description: Bad Request
         "401":
@@ -167,7 +153,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+              $ref: '#/definitions/models.Run'
             type: array
         "401":
           description: Unauthorized
@@ -227,7 +213,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+            $ref: '#/definitions/models.Run'
         "401":
           description: Unauthorized
         "403":
@@ -256,14 +242,14 @@ paths:
         name: user
         required: true
         schema:
-          $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+          $ref: '#/definitions/models.Run'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+            $ref: '#/definitions/models.Run'
         "400":
           description: Bad Request
         "401":
@@ -292,7 +278,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+              $ref: '#/definitions/models.User'
             type: array
         "401":
           description: Unauthorized
@@ -323,7 +309,7 @@ paths:
         name: user
         required: true
         schema:
-          $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+          $ref: '#/definitions/models.Run'
       produces:
       - application/json
       responses:
@@ -331,7 +317,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+              $ref: '#/definitions/models.Run'
             type: array
         "401":
           description: Unauthorized
@@ -361,7 +347,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+            $ref: '#/definitions/models.User'
         "401":
           description: Unauthorized
         "403":
@@ -390,14 +376,14 @@ paths:
         name: user
         required: true
         schema:
-          $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+          $ref: '#/definitions/models.User'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+            $ref: '#/definitions/models.User'
         "400":
           description: Bad Request
         "401":
@@ -429,14 +415,14 @@ paths:
         name: user
         required: true
         schema:
-          $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+          $ref: '#/definitions/models.User'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+            $ref: '#/definitions/models.User'
         "401":
           description: Unauthorized
         "403":

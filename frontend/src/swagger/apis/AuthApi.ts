@@ -15,26 +15,26 @@
 
 import * as runtime from '../runtime';
 import {
-    GithubComSerbrodaDistanceChallengeHandlersLoginRequest,
-    GithubComSerbrodaDistanceChallengeHandlersLoginRequestFromJSON,
-    GithubComSerbrodaDistanceChallengeHandlersLoginRequestToJSON,
-    GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest,
-    GithubComSerbrodaDistanceChallengeHandlersRegistrationRequestFromJSON,
-    GithubComSerbrodaDistanceChallengeHandlersRegistrationRequestToJSON,
-    GithubComSerbrodaDistanceChallengeModelsUser,
-    GithubComSerbrodaDistanceChallengeModelsUserFromJSON,
-    GithubComSerbrodaDistanceChallengeModelsUserToJSON,
-    GithubComSerbrodaDistanceChallengeSecurityTokenPair,
-    GithubComSerbrodaDistanceChallengeSecurityTokenPairFromJSON,
-    GithubComSerbrodaDistanceChallengeSecurityTokenPairToJSON,
+    HandlersLoginRequest,
+    HandlersLoginRequestFromJSON,
+    HandlersLoginRequestToJSON,
+    HandlersRegistrationRequest,
+    HandlersRegistrationRequestFromJSON,
+    HandlersRegistrationRequestToJSON,
+    ModelsUser,
+    ModelsUserFromJSON,
+    ModelsUserToJSON,
+    SecurityTokenPair,
+    SecurityTokenPairFromJSON,
+    SecurityTokenPairToJSON,
 } from '../models';
 
 export interface LoginRequest {
-    login: GithubComSerbrodaDistanceChallengeHandlersLoginRequest;
+    login: HandlersLoginRequest;
 }
 
 export interface RegisterRequest {
-    login: GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest;
+    login: HandlersRegistrationRequest;
 }
 
 /**
@@ -46,7 +46,7 @@ export class AuthApi extends runtime.BaseAPI {
      * login to an account
      * Login
      */
-    async loginRaw(requestParameters: LoginRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<GithubComSerbrodaDistanceChallengeSecurityTokenPair>> {
+    async loginRaw(requestParameters: LoginRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<SecurityTokenPair>> {
         if (requestParameters.login === null || requestParameters.login === undefined) {
             throw new runtime.RequiredError('login','Required parameter requestParameters.login was null or undefined when calling login.');
         }
@@ -62,17 +62,17 @@ export class AuthApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: GithubComSerbrodaDistanceChallengeHandlersLoginRequestToJSON(requestParameters.login),
+            body: HandlersLoginRequestToJSON(requestParameters.login),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GithubComSerbrodaDistanceChallengeSecurityTokenPairFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SecurityTokenPairFromJSON(jsonValue));
     }
 
     /**
      * login to an account
      * Login
      */
-    async login(requestParameters: LoginRequest, initOverrides?: RequestInit): Promise<GithubComSerbrodaDistanceChallengeSecurityTokenPair> {
+    async login(requestParameters: LoginRequest, initOverrides?: RequestInit): Promise<SecurityTokenPair> {
         const response = await this.loginRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -81,7 +81,7 @@ export class AuthApi extends runtime.BaseAPI {
      * register a new account
      * Register
      */
-    async registerRaw(requestParameters: RegisterRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<GithubComSerbrodaDistanceChallengeModelsUser>> {
+    async registerRaw(requestParameters: RegisterRequest, initOverrides?: RequestInit): Promise<runtime.ApiResponse<ModelsUser>> {
         if (requestParameters.login === null || requestParameters.login === undefined) {
             throw new runtime.RequiredError('login','Required parameter requestParameters.login was null or undefined when calling register.');
         }
@@ -97,17 +97,17 @@ export class AuthApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: GithubComSerbrodaDistanceChallengeHandlersRegistrationRequestToJSON(requestParameters.login),
+            body: HandlersRegistrationRequestToJSON(requestParameters.login),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GithubComSerbrodaDistanceChallengeModelsUserFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelsUserFromJSON(jsonValue));
     }
 
     /**
      * register a new account
      * Register
      */
-    async register(requestParameters: RegisterRequest, initOverrides?: RequestInit): Promise<GithubComSerbrodaDistanceChallengeModelsUser> {
+    async register(requestParameters: RegisterRequest, initOverrides?: RequestInit): Promise<ModelsUser> {
         const response = await this.registerRaw(requestParameters, initOverrides);
         return await response.value();
     }

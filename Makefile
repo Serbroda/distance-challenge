@@ -13,10 +13,12 @@ generate: generate-swagger-docs generate-swagger-client
 
 generate-swagger-docs:
 	echo generating swagger docs
-	swag init -g app/main.go --parseDependency --parseInternal --output app/docs
+#	--parseDependency --parseInternal
+	swag init -g app/main.go --parseInternal --output app/docs
 
 generate-swagger-client:
 	echo generating swagger client
+	rm -rf frontend/src/swagger
 	docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
 		-i "/local/${SPEC_FILE_LOCATION}" \
 		-g typescript-fetch \

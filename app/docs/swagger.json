@@ -33,7 +33,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_handlers.LoginRequest"
+                            "$ref": "#/definitions/handlers.LoginRequest"
                         }
                     }
                 ],
@@ -41,7 +41,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_security.TokenPair"
+                            "$ref": "#/definitions/security.TokenPair"
                         }
                     },
                     "400": {
@@ -74,7 +74,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_handlers.RegistrationRequest"
+                            "$ref": "#/definitions/handlers.RegistrationRequest"
                         }
                     }
                 ],
@@ -82,7 +82,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "400": {
@@ -117,7 +117,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "400": {
@@ -163,7 +163,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                                "$ref": "#/definitions/models.Run"
                             }
                         }
                     },
@@ -210,7 +210,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                            "$ref": "#/definitions/models.Run"
                         }
                     },
                     "401": {
@@ -258,7 +258,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                            "$ref": "#/definitions/models.Run"
                         }
                     }
                 ],
@@ -266,7 +266,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                            "$ref": "#/definitions/models.Run"
                         }
                     },
                     "400": {
@@ -359,7 +359,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                                "$ref": "#/definitions/models.User"
                             }
                         }
                     },
@@ -410,7 +410,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                            "$ref": "#/definitions/models.Run"
                         }
                     }
                 ],
@@ -420,7 +420,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                                "$ref": "#/definitions/models.Run"
                             }
                         }
                     },
@@ -467,7 +467,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "401": {
@@ -515,7 +515,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     }
                 ],
@@ -523,7 +523,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "400": {
@@ -576,7 +576,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     }
                 ],
@@ -584,7 +584,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "401": {
@@ -604,7 +604,7 @@
         }
     },
     "definitions": {
-        "app_handlers.LoginRequest": {
+        "handlers.LoginRequest": {
             "type": "object",
             "properties": {
                 "password": {
@@ -615,7 +615,7 @@
                 }
             }
         },
-        "app_handlers.RegistrationRequest": {
+        "handlers.RegistrationRequest": {
             "type": "object",
             "properties": {
                 "password": {
@@ -626,29 +626,7 @@
                 }
             }
         },
-        "github_com_Serbroda_distance-challenge_handlers.LoginRequest": {
-            "type": "object",
-            "properties": {
-                "password": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_Serbroda_distance-challenge_handlers.RegistrationRequest": {
-            "type": "object",
-            "properties": {
-                "password": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_Serbroda_distance-challenge_models.Run": {
+        "models.Run": {
             "type": "object",
             "properties": {
                 "created_at": {
@@ -671,7 +649,7 @@
                 }
             }
         },
-        "github_com_Serbroda_distance-challenge_models.User": {
+        "models.User": {
             "type": "object",
             "properties": {
                 "active": {
@@ -694,7 +672,7 @@
                 }
             }
         },
-        "github_com_Serbroda_distance-challenge_security.TokenPair": {
+        "security.TokenPair": {
             "type": "object",
             "properties": {
                 "access_token": {

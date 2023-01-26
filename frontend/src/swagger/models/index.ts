@@ -1,9 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './AppHandlersLoginRequest';
-export * from './AppHandlersRegistrationRequest';
-export * from './GithubComSerbrodaDistanceChallengeHandlersLoginRequest';
-export * from './GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest';
-export * from './GithubComSerbrodaDistanceChallengeModelsRun';
-export * from './GithubComSerbrodaDistanceChallengeModelsUser';
-export * from './GithubComSerbrodaDistanceChallengeSecurityTokenPair';
+export * from './HandlersLoginRequest';
+export * from './HandlersRegistrationRequest';
+export * from './ModelsRun';
+export * from './ModelsUser';
+export * from './SecurityTokenPair';

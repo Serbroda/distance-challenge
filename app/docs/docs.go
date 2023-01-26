@@ -37,7 +37,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_handlers.LoginRequest"
+                            "$ref": "#/definitions/handlers.LoginRequest"
                         }
                     }
                 ],
@@ -45,7 +45,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_security.TokenPair"
+                            "$ref": "#/definitions/security.TokenPair"
                         }
                     },
                     "400": {
@@ -78,7 +78,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_handlers.RegistrationRequest"
+                            "$ref": "#/definitions/handlers.RegistrationRequest"
                         }
                     }
                 ],
@@ -86,7 +86,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "400": {
@@ -121,7 +121,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "400": {
@@ -167,7 +167,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                                "$ref": "#/definitions/models.Run"
                             }
                         }
                     },
@@ -214,7 +214,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                            "$ref": "#/definitions/models.Run"
                         }
                     },
                     "401": {
@@ -262,7 +262,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                            "$ref": "#/definitions/models.Run"
                         }
                     }
                 ],
@@ -270,7 +270,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                            "$ref": "#/definitions/models.Run"
                         }
                     },
                     "400": {
@@ -363,7 +363,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                                "$ref": "#/definitions/models.User"
                             }
                         }
                     },
@@ -414,7 +414,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                            "$ref": "#/definitions/models.Run"
                         }
                     }
                 ],
@@ -424,7 +424,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.Run"
+                                "$ref": "#/definitions/models.Run"
                             }
                         }
                     },
@@ -471,7 +471,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "401": {
@@ -519,7 +519,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     }
                 ],
@@ -527,7 +527,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "400": {
@@ -580,7 +580,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     }
                 ],
@@ -588,7 +588,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_Serbroda_distance-challenge_models.User"
+                            "$ref": "#/definitions/models.User"
                         }
                     },
                     "401": {
@@ -608,7 +608,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "app_handlers.LoginRequest": {
+        "handlers.LoginRequest": {
             "type": "object",
             "properties": {
                 "password": {
@@ -619,7 +619,7 @@ const docTemplate = `{
                 }
             }
         },
-        "app_handlers.RegistrationRequest": {
+        "handlers.RegistrationRequest": {
             "type": "object",
             "properties": {
                 "password": {
@@ -630,29 +630,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Serbroda_distance-challenge_handlers.LoginRequest": {
-            "type": "object",
-            "properties": {
-                "password": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_Serbroda_distance-challenge_handlers.RegistrationRequest": {
-            "type": "object",
-            "properties": {
-                "password": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "github_com_Serbroda_distance-challenge_models.Run": {
+        "models.Run": {
             "type": "object",
             "properties": {
                 "created_at": {
@@ -675,7 +653,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Serbroda_distance-challenge_models.User": {
+        "models.User": {
             "type": "object",
             "properties": {
                 "active": {
@@ -698,7 +676,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_Serbroda_distance-challenge_security.TokenPair": {
+        "security.TokenPair": {
             "type": "object",
             "properties": {
                 "access_token": {

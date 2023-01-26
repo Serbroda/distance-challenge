@@ -16,52 +16,52 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface GithubComSerbrodaDistanceChallengeModelsUser
+ * @interface ModelsUser
  */
-export interface GithubComSerbrodaDistanceChallengeModelsUser {
+export interface ModelsUser {
     /**
      * 
      * @type {boolean}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsUser
+     * @memberof ModelsUser
      */
     active?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsUser
+     * @memberof ModelsUser
      */
     createdAt?: string;
     /**
      * 
      * @type {number}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsUser
+     * @memberof ModelsUser
      */
     id?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsUser
+     * @memberof ModelsUser
      */
     isAdmin?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsUser
+     * @memberof ModelsUser
      */
     updatedAt?: string;
     /**
      * 
      * @type {string}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsUser
+     * @memberof ModelsUser
      */
     username?: string;
 }
 
-export function GithubComSerbrodaDistanceChallengeModelsUserFromJSON(json: any): GithubComSerbrodaDistanceChallengeModelsUser {
-    return GithubComSerbrodaDistanceChallengeModelsUserFromJSONTyped(json, false);
+export function ModelsUserFromJSON(json: any): ModelsUser {
+    return ModelsUserFromJSONTyped(json, false);
 }
 
-export function GithubComSerbrodaDistanceChallengeModelsUserFromJSONTyped(json: any, ignoreDiscriminator: boolean): GithubComSerbrodaDistanceChallengeModelsUser {
+export function ModelsUserFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelsUser {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -76,7 +76,7 @@ export function GithubComSerbrodaDistanceChallengeModelsUserFromJSONTyped(json: 
     };
 }
 
-export function GithubComSerbrodaDistanceChallengeModelsUserToJSON(value?: GithubComSerbrodaDistanceChallengeModelsUser | null): any {
+export function ModelsUserToJSON(value?: ModelsUser | null): any {
     if (value === undefined) {
         return undefined;
     }

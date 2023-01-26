@@ -16,28 +16,28 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest
+ * @interface HandlersLoginRequest
  */
-export interface GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest {
+export interface HandlersLoginRequest {
     /**
      * 
      * @type {string}
-     * @memberof GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest
+     * @memberof HandlersLoginRequest
      */
     password?: string;
     /**
      * 
      * @type {string}
-     * @memberof GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest
+     * @memberof HandlersLoginRequest
      */
     username?: string;
 }
 
-export function GithubComSerbrodaDistanceChallengeHandlersRegistrationRequestFromJSON(json: any): GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest {
-    return GithubComSerbrodaDistanceChallengeHandlersRegistrationRequestFromJSONTyped(json, false);
+export function HandlersLoginRequestFromJSON(json: any): HandlersLoginRequest {
+    return HandlersLoginRequestFromJSONTyped(json, false);
 }
 
-export function GithubComSerbrodaDistanceChallengeHandlersRegistrationRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest {
+export function HandlersLoginRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): HandlersLoginRequest {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -48,7 +48,7 @@ export function GithubComSerbrodaDistanceChallengeHandlersRegistrationRequestFro
     };
 }
 
-export function GithubComSerbrodaDistanceChallengeHandlersRegistrationRequestToJSON(value?: GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest | null): any {
+export function HandlersLoginRequestToJSON(value?: HandlersLoginRequest | null): any {
     if (value === undefined) {
         return undefined;
     }

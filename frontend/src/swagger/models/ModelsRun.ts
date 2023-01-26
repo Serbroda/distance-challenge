@@ -16,52 +16,52 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface GithubComSerbrodaDistanceChallengeModelsRun
+ * @interface ModelsRun
  */
-export interface GithubComSerbrodaDistanceChallengeModelsRun {
+export interface ModelsRun {
     /**
      * 
      * @type {string}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsRun
+     * @memberof ModelsRun
      */
     createdAt?: string;
     /**
      * 
      * @type {number}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsRun
+     * @memberof ModelsRun
      */
     distance?: number;
     /**
      * 
      * @type {number}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsRun
+     * @memberof ModelsRun
      */
     id?: number;
     /**
      * 
      * @type {number}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsRun
+     * @memberof ModelsRun
      */
     time?: number;
     /**
      * 
      * @type {string}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsRun
+     * @memberof ModelsRun
      */
     updatedAt?: string;
     /**
      * 
      * @type {number}
-     * @memberof GithubComSerbrodaDistanceChallengeModelsRun
+     * @memberof ModelsRun
      */
     userId?: number;
 }
 
-export function GithubComSerbrodaDistanceChallengeModelsRunFromJSON(json: any): GithubComSerbrodaDistanceChallengeModelsRun {
-    return GithubComSerbrodaDistanceChallengeModelsRunFromJSONTyped(json, false);
+export function ModelsRunFromJSON(json: any): ModelsRun {
+    return ModelsRunFromJSONTyped(json, false);
 }
 
-export function GithubComSerbrodaDistanceChallengeModelsRunFromJSONTyped(json: any, ignoreDiscriminator: boolean): GithubComSerbrodaDistanceChallengeModelsRun {
+export function ModelsRunFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelsRun {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -76,7 +76,7 @@ export function GithubComSerbrodaDistanceChallengeModelsRunFromJSONTyped(json: a
     };
 }
 
-export function GithubComSerbrodaDistanceChallengeModelsRunToJSON(value?: GithubComSerbrodaDistanceChallengeModelsRun | null): any {
+export function ModelsRunToJSON(value?: ModelsRun | null): any {
     if (value === undefined) {
         return undefined;
     }

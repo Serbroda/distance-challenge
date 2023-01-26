@@ -16,28 +16,28 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface GithubComSerbrodaDistanceChallengeSecurityTokenPair
+ * @interface SecurityTokenPair
  */
-export interface GithubComSerbrodaDistanceChallengeSecurityTokenPair {
+export interface SecurityTokenPair {
     /**
      * 
      * @type {string}
-     * @memberof GithubComSerbrodaDistanceChallengeSecurityTokenPair
+     * @memberof SecurityTokenPair
      */
     accessToken?: string;
     /**
      * 
      * @type {string}
-     * @memberof GithubComSerbrodaDistanceChallengeSecurityTokenPair
+     * @memberof SecurityTokenPair
      */
     refreshToken?: string;
 }
 
-export function GithubComSerbrodaDistanceChallengeSecurityTokenPairFromJSON(json: any): GithubComSerbrodaDistanceChallengeSecurityTokenPair {
-    return GithubComSerbrodaDistanceChallengeSecurityTokenPairFromJSONTyped(json, false);
+export function SecurityTokenPairFromJSON(json: any): SecurityTokenPair {
+    return SecurityTokenPairFromJSONTyped(json, false);
 }
 
-export function GithubComSerbrodaDistanceChallengeSecurityTokenPairFromJSONTyped(json: any, ignoreDiscriminator: boolean): GithubComSerbrodaDistanceChallengeSecurityTokenPair {
+export function SecurityTokenPairFromJSONTyped(json: any, ignoreDiscriminator: boolean): SecurityTokenPair {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -48,7 +48,7 @@ export function GithubComSerbrodaDistanceChallengeSecurityTokenPairFromJSONTyped
     };
 }
 
-export function GithubComSerbrodaDistanceChallengeSecurityTokenPairToJSON(value?: GithubComSerbrodaDistanceChallengeSecurityTokenPair | null): any {
+export function SecurityTokenPairToJSON(value?: SecurityTokenPair | null): any {
     if (value === undefined) {
         return undefined;
     }
