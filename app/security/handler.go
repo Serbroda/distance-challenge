@@ -25,6 +25,13 @@ func RegisterHandlers(e *echo.Echo, h *Handler, baseUrl string) {
 	e.POST(baseUrl+"/auth/signup", h.SignUp)
 }
 
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Param login body LoginRequest true "login body"
+// @Success 200 {object} TokenPair
+// @Failure 400
+// @Router /auth/login [post]
 func (h *Handler) SignIn(ctx echo.Context) error {
 	var payload LoginRequest
 	err := ctx.Bind(&payload)

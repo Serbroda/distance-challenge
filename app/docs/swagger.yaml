@@ -1,0 +1,55 @@
+basePath: /
+definitions:
+  security.LoginRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  security.TokenPair:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
+        type: string
+    type: object
+host: localhost
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Echo Swagger Example API
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: login body
+        in: body
+        name: login
+        required: true
+        schema:
+          $ref: '#/definitions/security.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/security.TokenPair'
+        "400":
+          description: Bad Request
+      tags:
+      - auth
+schemes:
+- http
+swagger: "2.0"
