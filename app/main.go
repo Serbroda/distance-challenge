@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/Serbroda/distance-challenge/db"
 	_ "github.com/Serbroda/distance-challenge/docs"
 	"github.com/Serbroda/distance-challenge/handlers"
@@ -47,7 +48,11 @@ func main() {
 		},
 		SigningKey: []byte("s3cret"),
 	}))
-	handlers.RegisterUserHandlers(api, &handlers.UserHandler{}, "")
+	handlers.RegisterUserHandlers(api, &handlers.UserHandler{UserService: &us}, "")
+
+	for _, r := range e.Routes() {
+		fmt.Printf("%s %s\n", r.Method, r.Path)
+	}
 
 	e.Logger.Fatal(e.Start(":1323"))
 }

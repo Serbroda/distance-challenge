@@ -22,6 +22,7 @@ func Connect(name string) *gorm.DB {
 			panic(err)
 		}
 		Migrate(db)
+		InitializeData(db)
 		DB = db
 	})
 	return DB

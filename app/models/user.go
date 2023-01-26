@@ -9,4 +9,5 @@ type User struct {
 	Username string `json:"username"`
 	Password string `json:"-"`
 	Active   bool   `json:"active"`
+	IsAdmin  bool   `json:"is_admin"`
 }

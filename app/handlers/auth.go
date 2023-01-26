@@ -43,11 +43,11 @@ func (h *AuthHandler) Login(ctx echo.Context) error {
 
 	u, err := h.UserService.GetByUsername(payload.Username)
 
-	if err != nil || !security.CheckPasswordHash(payload.Password, u.Password) {
+	if err != nil || !security.CheckPasswordHash(payload.Password, u.Password) || !u.Active {
 		return ctx.String(http.StatusBadRequest, "invalid login")
 	}
 
-	tokens, err := security.GenerateJwtPair("s3cret", u.Username, 10, 600)
+	tokens, err := security.GenerateJwtPair("s3cret", u.Username, u.ID, 10, 600)
 
 	if err != nil {
 		return ctx.String(http.StatusInternalServerError, "failed to generate token")
