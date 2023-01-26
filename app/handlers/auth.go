@@ -1,13 +1,15 @@
-package security
+package handlers
 
 import (
-	"github.com/Serbroda/distance-challenge/user"
+	"github.com/Serbroda/distance-challenge/models"
+	"github.com/Serbroda/distance-challenge/security"
+	"github.com/Serbroda/distance-challenge/services"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
 
-type Handler struct {
-	Provider user.UserService
+type AuthHandler struct {
+	UserService *services.UserService
 }
 
 type LoginRequest struct {
@@ -20,9 +22,9 @@ type RegistrationRequest struct {
 	Password string `json:"password" form:"password"`
 }
 
-func RegisterHandlers(e *echo.Echo, h *Handler, baseUrl string) {
-	e.POST(baseUrl+"/auth/signin", h.SignIn)
-	e.POST(baseUrl+"/auth/signup", h.SignUp)
+func RegisterAuthHandlers(e *echo.Echo, h *AuthHandler, baseUrl string) {
+	e.POST(baseUrl+"/auth/login", h.Login)
+	e.POST(baseUrl+"/auth/register", h.Register)
 }
 
 // @Tags auth
@@ -32,20 +34,20 @@ func RegisterHandlers(e *echo.Echo, h *Handler, baseUrl string) {
 // @Success 200 {object} TokenPair
 // @Failure 400
 // @Router /auth/login [post]
-func (h *Handler) SignIn(ctx echo.Context) error {
+func (h *AuthHandler) Login(ctx echo.Context) error {
 	var payload LoginRequest
 	err := ctx.Bind(&payload)
 	if err != nil || payload.Username == "" || payload.Password == "" {
 		return ctx.String(http.StatusBadRequest, "bad request")
 	}
 
-	user, err := h.Provider.GetByUsername(payload.Username)
+	u, err := h.UserService.GetByUsername(payload.Username)
 
-	if err != nil || !CheckPasswordHash(payload.Password, user.Password) {
+	if err != nil || !security.CheckPasswordHash(payload.Password, u.Password) {
 		return ctx.String(http.StatusBadRequest, "invalid login")
 	}
 
-	tokens, err := GenerateJwtPair("s3cret", user.Username, 10, 600)
+	tokens, err := security.GenerateJwtPair("s3cret", u.Username, 10, 600)
 
 	if err != nil {
 		return ctx.String(http.StatusInternalServerError, "failed to generate token")
@@ -54,22 +56,22 @@ func (h *Handler) SignIn(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, tokens)
 }
 
-func (h *Handler) SignUp(ctx echo.Context) error {
+func (h *AuthHandler) Register(ctx echo.Context) error {
 	var payload RegistrationRequest
 	err := ctx.Bind(&payload)
 	if err != nil || payload.Username == "" || payload.Password == "" {
 		return ctx.String(http.StatusBadRequest, "bad request")
 	}
 
-	_, err = h.Provider.GetByUsername(payload.Username)
+	_, err = h.UserService.GetByUsername(payload.Username)
 
 	if err == nil {
 		return ctx.String(http.StatusBadRequest, "user already exists")
 	}
 
-	user, err := h.Provider.Create(user.User{
+	user, err := h.UserService.Create(models.User{
 		Username: payload.Username,
-		Password: MustHashPassword(payload.Password),
+		Password: security.MustHashPassword(payload.Password),
 		Active:   false,
 	})
 

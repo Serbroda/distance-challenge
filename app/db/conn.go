@@ -1,7 +1,7 @@
 package db
 
 import (
-	"github.com/Serbroda/distance-challenge/user"
+	"github.com/Serbroda/distance-challenge/models"
 	"log"
 	"sync"
 
@@ -28,5 +28,5 @@ func Connect(name string) *gorm.DB {
 }
 
 func Migrate(db *gorm.DB) {
-	db.AutoMigrate(&user.User{})
+	db.AutoMigrate(&models.User{}, &models.Run{})
 }

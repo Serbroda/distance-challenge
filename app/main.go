@@ -3,8 +3,9 @@ package main
 import (
 	"github.com/Serbroda/distance-challenge/db"
 	_ "github.com/Serbroda/distance-challenge/docs"
+	"github.com/Serbroda/distance-challenge/handlers"
 	"github.com/Serbroda/distance-challenge/security"
-	"github.com/Serbroda/distance-challenge/user"
+	"github.com/Serbroda/distance-challenge/services"
 	"github.com/golang-jwt/jwt/v4"
 	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
@@ -28,24 +29,25 @@ import (
 // @BasePath /
 // @schemes http
 func main() {
+	db := db.Connect(":memory:")
+	us := services.UserService{DB: db}
+	//rs := run.RunService{DB: db}
+
 	e := echo.New()
 	e.Use(middleware.CORS())
+
 	e.GET("/api/docs/*", echoSwagger.WrapHandler)
 
-	db := db.Connect(":memory:")
-	us := user.UserServiceGorm{DB: db}
+	handlers.RegisterAuthHandlers(e, &handlers.AuthHandler{UserService: &us}, "")
 
-	security.RegisterHandlers(e, &security.Handler{Provider: &us}, "")
-
-	config := echojwt.Config{
+	api := e.Group("/api/v1")
+	api.Use(echojwt.WithConfig(echojwt.Config{
 		NewClaimsFunc: func(c echo.Context) jwt.Claims {
 			return new(security.Claims)
 		},
 		SigningKey: []byte("s3cret"),
-	}
-
-	api := e.Group("/api/v1")
-	api.Use(echojwt.WithConfig(config))
+	}))
+	handlers.RegisterUserHandlers(api, &handlers.UserHandler{}, "")
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
