@@ -21,7 +21,7 @@ func main() {
 	db := db.Connect(":memory:")
 	us := user.UserServiceGorm{DB: db}
 
-	security.RegisterHandlers(e, &security.Handler{Provider: &us})
+	security.RegisterHandlers(e, &security.Handler{Provider: &us}, "")
 
 	config := echojwt.Config{
 		NewClaimsFunc: func(c echo.Context) jwt.Claims {
