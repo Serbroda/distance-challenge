@@ -31,8 +31,9 @@ func RegisterAuthHandlers(e *echo.Echo, h *AuthHandler, baseUrl string) {
 // @Accept json
 // @Produce json
 // @Param login body LoginRequest true "login body"
-// @Success 200 {object} TokenPair
+// @Success 200 {object} security.TokenPair
 // @Failure 400
+// @Failure 500
 // @Router /auth/login [post]
 func (h *AuthHandler) Login(ctx echo.Context) error {
 	var payload LoginRequest
@@ -56,6 +57,14 @@ func (h *AuthHandler) Login(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, tokens)
 }
 
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Param login body RegistrationRequest true "register body"
+// @Success 200 {object} models.User
+// @Failure 400
+// @Failure 500
+// @Router /auth/register [post]
 func (h *AuthHandler) Register(ctx echo.Context) error {
 	var payload RegistrationRequest
 	err := ctx.Bind(&payload)

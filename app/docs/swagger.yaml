@@ -1,13 +1,64 @@
 basePath: /
 definitions:
-  security.LoginRequest:
+  app_handlers.LoginRequest:
     properties:
       password:
         type: string
       username:
         type: string
     type: object
-  security.TokenPair:
+  app_handlers.RegistrationRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  github_com_Serbroda_distance-challenge_handlers.LoginRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  github_com_Serbroda_distance-challenge_handlers.RegistrationRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  github_com_Serbroda_distance-challenge_models.Run:
+    properties:
+      created_at:
+        type: string
+      distance:
+        type: integer
+      id:
+        type: integer
+      time:
+        type: integer
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  github_com_Serbroda_distance-challenge_models.User:
+    properties:
+      active:
+        type: boolean
+      created_at:
+        type: string
+      id:
+        type: integer
+      is_admin:
+        type: boolean
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  github_com_Serbroda_distance-challenge_security.TokenPair:
     properties:
       access_token:
         type: string
@@ -38,18 +89,318 @@ paths:
         name: login
         required: true
         schema:
-          $ref: '#/definitions/security.LoginRequest'
+          $ref: '#/definitions/app_handlers.LoginRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/security.TokenPair'
+            $ref: '#/definitions/github_com_Serbroda_distance-challenge_security.TokenPair'
         "400":
           description: Bad Request
+        "500":
+          description: Internal Server Error
       tags:
       - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: register body
+        in: body
+        name: login
+        required: true
+        schema:
+          $ref: '#/definitions/app_handlers.RegistrationRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      tags:
+      - auth
+  /me:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - api
+  /runs:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+            type: array
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+      tags:
+      - api
+  /runs/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: run id
+        in: path
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - api
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: run id
+        in: path
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - api
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: run id
+        in: path
+        name: id
+        type: string
+      - description: run body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - api
+  /users:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+            type: array
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - api
+  /users/{id}/runs:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        type: string
+      - description: run body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.Run'
+            type: array
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+      tags:
+      - api
+  /users/{userId}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: user id
+        in: path
+        name: userId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - api
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: user id
+        in: path
+        name: userId
+        type: string
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - api
+  /users/{userId}/activate:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: user id
+        in: path
+        name: userId
+        type: string
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_Serbroda_distance-challenge_models.User'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - api
 schemes:
 - http
 swagger: "2.0"

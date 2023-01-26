@@ -13,7 +13,7 @@ generate: generate-swagger-docs generate-swagger-client
 
 generate-swagger-docs:
 	echo generating swagger docs
-	swag init -g app/main.go --output app/docs
+	swag init -g app/main.go --parseDependency --parseInternal --output app/docs
 
 generate-swagger-client:
 	echo generating swagger client
@@ -21,4 +21,4 @@ generate-swagger-client:
 		-i "/local/${SPEC_FILE_LOCATION}" \
 		-g typescript-fetch \
 		--additional-properties=typescriptThreePlus=true \
-		-o "/local/frontend/src/gen"
+		-o "/local/frontend/src/swagger"

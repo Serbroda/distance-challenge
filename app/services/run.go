@@ -18,6 +18,12 @@ func (s *RunService) Get(id uint) (models.Run, error) {
 	return entity, nil
 }
 
+func (s *RunService) GetAll() []models.Run {
+	var entites []models.Run
+	s.DB.Find(&entites)
+	return entites
+}
+
 func (s *RunService) GetByUser(userId uint) ([]models.Run, error) {
 	var entities []models.Run
 	res := s.DB.Where("user_id = ?", userId).Find(&entities)
@@ -41,4 +47,9 @@ func (s *RunService) Update(run models.Run) (models.Run, error) {
 		return models.Run{}, res.Error
 	}
 	return s.Get(run.ID)
+}
+
+func (s *RunService) DeleteRun(id uint) error {
+	res := s.DB.Delete(&models.Run{}, id)
+	return res.Error
 }

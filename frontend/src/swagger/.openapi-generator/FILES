@@ -1,0 +1,14 @@
+.openapi-generator-ignore
+apis/ApiApi.ts
+apis/AuthApi.ts
+apis/index.ts
+index.ts
+models/AppHandlersLoginRequest.ts
+models/AppHandlersRegistrationRequest.ts
+models/GithubComSerbrodaDistanceChallengeHandlersLoginRequest.ts
+models/GithubComSerbrodaDistanceChallengeHandlersRegistrationRequest.ts
+models/GithubComSerbrodaDistanceChallengeModelsRun.ts
+models/GithubComSerbrodaDistanceChallengeModelsUser.ts
+models/GithubComSerbrodaDistanceChallengeSecurityTokenPair.ts
+models/index.ts
+runtime.ts
